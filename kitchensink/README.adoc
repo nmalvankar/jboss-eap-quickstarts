@@ -88,7 +88,10 @@ endif::[]
 
 == Deploy this application on OpenShift 4 using EAP operator
 
-Step1: Install the EAP operator
+Step 1: Install the EAP operator
+
+Login as a cluster administrator
+
 Get a list of operators in the OpenShift marketplace
 
 `oc get packagemanifests -n openshift-marketplace`
@@ -101,12 +104,14 @@ Verify that the subscription object was created
 
 `oc get csv -n openshift-operators`
 
-Step2: Deploy kitchensink application using this operator
+Step 2: Deploy kitchensink application using this operator
 
 `oc apply -f .openshift/crd-eap-app.yaml`
 
-Step3: Access the kitchensink application via the route 
+Step 3: Access the kitchensink application via the route 
 
 Get the route hostname
 
 `oc get route -n <your_namespace> --template='{{ .spec.host }}'`
+
+Access this url via the browser and verify that the application is up and running.
