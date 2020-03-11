@@ -3,7 +3,6 @@ build
 target
 .DS_Store
 bin
-.openshift
 */.gitignore
 .gitkeep
 /helloworld-jsp

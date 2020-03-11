@@ -1,0 +1,37 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  labels:
+    app: eap-cd-basic-s2i
+    application: eap-app
+  name: eap-app
+  namespace: eap-demo
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: eap-app:latest
+  source:
+    contextDir: kitchensink
+    git:
+      ref: openshift
+      uri: https://github.com/nmalvankar/jboss-eap-quickstarts
+    type: Git
+  strategy:
+    sourceStrategy:
+      env:
+      - name: MAVEN_MIRROR_URL
+      - name: MAVEN_ARGS_APPEND
+        value: -Dcom.redhat.xpaas.repo.jbossorg
+      - name: ARTIFACT_DIR
+      - name: S2I_IMAGE_SOURCE_MOUNTS
+        value: extensions
+#      - name: GALLEON_PROVISION_LAYERS
+#        value: postgresql-datasource
+      forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: eap-cd-openshift-rhel8:18.0
+        namespace: openshift
+      incremental: true
+    type: Source

@@ -1,0 +1,36 @@
+apiVersion: wildfly.org/v1alpha1
+kind: WildFlyServer
+metadata:
+  name: quickstart
+  namespace: eap-demo
+spec:
+  applicationImage: image-registry.openshift-image-registry.svc:5000/eap-demo/eap-app@sha256:3b4d0b85ea1ecee6ee7267c19f01af077445cd8ff59fade970abf6dd6d33a052
+  replicas: 2
+  storage:
+    volumeClaimTemplate:
+      spec:
+        resources:
+          requests:
+            storage: 3Gi
+  env:
+  - name: POSTGRESQL_SERVICE_HOST
+    value: postgresql
+  - name: POSTGRESQL_SERVICE_PORT
+    value: '5432'
+  - name: POSTGRESQL_DATABASE
+    valueFrom:
+      secretKeyRef:
+        key: database-name
+        name: postgresql
+  - name: POSTGRESQL_USER
+    valueFrom:
+      secretKeyRef:
+        key: database-user
+        name: postgresql
+  - name: POSTGRESQL_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        key: database-password
+        name: postgresql
+  - name: ENV_FILES
+    value: /opt/eap/standalone/configuration/postgres.env

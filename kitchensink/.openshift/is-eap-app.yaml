@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    app: eap-cd-basic-s2i
+  name: eap-app
+  namespace: eap-demo
