@@ -32,5 +32,5 @@ spec:
       secretKeyRef:
         key: database-password
         name: postgresql
-  - name: ENV_FILES
-    value: /opt/eap/standalone/configuration/postgres.env
+  #- name: ENV_FILES
+  #  value: /opt/eap/standalone/configuration/postgres.env
