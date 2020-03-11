@@ -105,5 +105,8 @@ Step2: Deploy kitchensink application using this operator
 
 `oc apply -f .openshift/crd-eap-app.yaml`
 
+Step3: Access the kitchensink application via the route 
 
+Get the route hostname
 
+`oc get route -n <your_namespace> --template='{{ .spec.host }}'`
