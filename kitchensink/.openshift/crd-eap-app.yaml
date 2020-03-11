@@ -4,7 +4,7 @@ metadata:
   name: quickstart
   namespace: eap-demo
 spec:
-  applicationImage: image-registry.openshift-image-registry.svc:5000/eap-demo/eap-app@sha256:3b4d0b85ea1ecee6ee7267c19f01af077445cd8ff59fade970abf6dd6d33a052
+  applicationImage: quay.io/nmalvankar/kitchensink-eap-app:latest
   replicas: 2
   storage:
     volumeClaimTemplate:
