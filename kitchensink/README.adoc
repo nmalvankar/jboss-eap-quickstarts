@@ -90,15 +90,19 @@ endif::[]
 
 Step1: Install the EAP operator
 Get a list of operators in the OpenShift marketplace
+
 `oc get packagemanifests -n openshift-marketplace`
 
 Add a subscription for EAP operator
+
 `oc apply -f operator/subscription.yaml`
 
 Verify that the subscription object was created
+
 `oc get csv -n openshift-operators`
 
 Step2: Deploy kitchensink application using this operator
+
 `oc apply -f .openshift/crd-eap-app.yaml`
 
 
